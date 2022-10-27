@@ -1,6 +1,7 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+enum Genre{masculino, femenino}
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -16,6 +17,19 @@ class _RegisterPageState extends State<RegisterPage> {
   final _repPassword=TextEditingController();
 
   String data="Información";
+  Genre? _genre= Genre.masculino;
+
+  void _onRegisterButtonClicked(){
+    setState(() {
+      String genre ="Masculino";
+      if(_genre==Genre.femenino){
+        genre="Femenino";
+      }
+
+      data="Nombre: ${_name.text} \nEmail:${_email.text} \nGenero:$genre";
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -28,7 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const Image(
-                    image: AssetImage('assets\images\viajeyturismo.png'),
+                    image: AssetImage('assets/images/viajeyturismo.png'),
                 ),
                 const SizedBox(
                   height: 16.0,
@@ -38,7 +52,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Nombre'),
-                  keyboardType: TextInputType.text,
+                  keyboardType: TextInputType.name,
                 ),
                 const SizedBox(
                   height: 16.0,
@@ -48,7 +62,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Correo Electronico'),
-                  keyboardType: TextInputType.text,
+                  keyboardType: TextInputType.emailAddress,
                 ),
                 const SizedBox(
                   height: 16.0,
@@ -58,7 +72,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Contraseña'),
-                  keyboardType: TextInputType.text,
+                  keyboardType: TextInputType.visiblePassword,
                 ),
                 const SizedBox(
                   height: 16.0,
@@ -73,11 +87,45 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(
                   height: 16.0,
                 ),
+                Row(
+                  children:[
+                   Expanded(
+                     child: ListTile(
+                       title:  const Text('Masculino'),
+                       leading: Radio<Genre>(
+                         value: Genre.masculino,
+                         groupValue: _genre,
+                         onChanged: (Genre? value){
+                           setState(() {
+                             _genre=value;
+                           });
+                         },
+                       ),
+                     ),
+                   ),
+                    Expanded(
+                        child:ListTile(
+                          title:  const Text('Femenino'),
+                          leading: Radio<Genre>(
+                            value: Genre.femenino,
+                            groupValue: _genre,
+                            onChanged: (Genre? value){
+                              setState(() {
+                                _genre=value;
+                              });
+                            },
+                          ),
+                        ),
+                    ),
+                  ],
+                ),
                 ElevatedButton(
                     style: TextButton.styleFrom(
                         textStyle: const TextStyle(fontSize: 16),
                           ),
-                    onPressed: (){},
+                    onPressed: (){
+                      _onRegisterButtonClicked();
+                    },
                     child: const Text("Registrar") ),
                 Text(
                     data,

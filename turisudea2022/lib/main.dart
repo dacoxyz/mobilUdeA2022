@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:turisudea2022/pages/register_page.dart';
+import 'package:turisudea2022/pages/splash_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,6 +15,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'TurismoApp',
+      localizationsDelegates: const[
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: const[
+        Locale("es","CO"),
+        Locale("en","US"),
+      ],
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -25,7 +35,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const RegisterPage(),
+      home: const SplashPage(),
     );
   }
 }
