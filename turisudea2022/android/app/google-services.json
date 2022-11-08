@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "977781797361",
+    "project_id": "mobiludea2022",
+    "storage_bucket": "mobiludea2022.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977781797361:android:7e74655c0a497d37ead450",
+        "android_client_info": {
+          "package_name": "com.programaticos.turisudea2022"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977781797361-b2gugp6oim4di9itfu7v2ok5npdsue9k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmoW1g7i0A_UhE9SaCrHkYFAG1_NuweUY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977781797361-b2gugp6oim4di9itfu7v2ok5npdsue9k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "977781797361-eeavb1qvrl57bsdslb1ai3qf5533g8sb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.programaticos.turisudea2022"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
