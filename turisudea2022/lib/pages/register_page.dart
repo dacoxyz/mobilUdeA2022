@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+
+import '../repository/firebase_api.dart';
 import 'login_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../models/User.dart';
-import 'dart:convert';
+//import 'package:shared_preferences/shared_preferences.dart';
+import '../models/User.dart' as UserApp;
 
 enum Genre{masculino, femenino}
 
@@ -15,6 +15,9 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+
+  final FirebaseApi _firebaseApi = FirebaseApi();
+
   final _name=TextEditingController();
   final _email=TextEditingController();
   final _password=TextEditingController();
@@ -24,9 +27,61 @@ class _RegisterPageState extends State<RegisterPage> {
   String data="Información";
   Genre? _genre= Genre.masculino;
 
-  void _saveUser (User user) async{
-    SharedPreferences prefs= await SharedPreferences.getInstance();
-    prefs.setString("user", jsonEncode(user));
+  void _saveUser2(UserApp.User user) async {
+    var result = await _firebaseApi.createUser(user);
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const LoginPage()));
+  }
+
+  void _registerUser (UserApp.User user) async{
+    //SharedPreferences prefs= await SharedPreferences.getInstance();
+    //prefs.setString("user", jsonEncode(user));
+    var result = await _firebaseApi.registerUser(user.email, user.password);
+    String msg = "";
+    if (result == "invalid-email") {
+      msg = "El correo electónico está mal escrito";
+    } else if (result == "weak-password") {
+      msg = "La contrasena debe tener minimo 6 digitos";
+    } else if (result == "email-already-in-use") {
+      msg = "Ya existe una cuenta con ese correo electronico";
+    } else if (result == "network-request-failed") {
+      msg = "Revise su conexion a internet";
+    } else {
+      msg = "Usuario registrado con exito";
+
+      _showMsg(context,msg);
+      user.uid=result;
+      //user. = result;
+      _saveUser2(user);
+    }
+
+    //Navigator.pushReplacement(
+    //    context, MaterialPageRoute(builder: (context) => const LoginPage()));
+  }
+
+
+  void _saveUser (UserApp.User user) async{
+    //SharedPreferences prefs= await SharedPreferences.getInstance();
+    //prefs.setString("user", jsonEncode(user));
+    var result = await _firebaseApi.registerUser(user.email, user.password);
+    String msg = "";
+    if (result == "invalid-email") {
+      msg = "El correo electónico está mal escrito";
+    } else if (result == "weak-password") {
+      msg = "La contrasena debe tener minimo 6 digitos";
+    } else if (result == "email-already-in-use") {
+      msg = "Ya existe una cuenta con ese correo electronico";
+    } else if (result == "network-request-failed") {
+      msg = "Revise su conexion a internet";
+    } else {
+      msg = "Usuario registrado con exito";
+
+      //user. = result;
+      _saveUser(user);
+    }
+    _showMsg(context,msg);
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const LoginPage()));
   }
 
 
@@ -80,10 +135,11 @@ String buttonMsg="Fecha de Nacimiento";
         if(_genre==Genre.femenino){
           genre="Femenino";
         }
-        var user = User(_name.text,_email.text, _password.text, genre,_bornDate.text);
+        var user = UserApp.User("",_name.text,_email.text, _password.text, genre,_bornDate.text);
         data="Nombre: ${_name.text} \nEmail:${_email.text} \nGenero:$genre \nFecha:$_date";
-        _saveUser(user);
-        _closeSplash();
+        //_saveUser(user);
+        _registerUser(user);
+        //_closeSplash();
       }
       else
         {

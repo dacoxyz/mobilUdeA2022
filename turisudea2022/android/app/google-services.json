@@ -29,6 +29,13 @@
             {
               "client_id": "977781797361-b2gugp6oim4di9itfu7v2ok5npdsue9k.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "977781797361-eeavb1qvrl57bsdslb1ai3qf5533g8sb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.programaticos.turisudea2022"
+              }
             }
           ]
         }

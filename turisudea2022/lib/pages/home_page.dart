@@ -1,7 +1,9 @@
 //import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'login_page.dart';
+import 'mySitesPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,7 +25,7 @@ class _HomePageState extends State<HomePage> {
 
   void _loadPages() {
     pages = [];
-    //pages.add(MyBooksPage());
+    pages.add(MySitesPage());
     //pages.add(SearchBookPage());
     //pages.add(FavoritesPage());
     //pages.add(BooksStorePage());
@@ -45,7 +47,7 @@ class _HomePageState extends State<HomePage> {
             onSelected: (Menu item) {
               setState(() {
                 if (item == Menu.logOut) {
-                  //FirebaseAuth.instance.signOut();
+                  FirebaseAuth.instance.signOut();
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
@@ -70,7 +72,7 @@ class _HomePageState extends State<HomePage> {
           currentIndex: currentPage,
           type: BottomNavigationBarType.fixed,
           onTap: (page){
-            //_onItemTapped(page);
+            _onItemTapped(page);
           },
           items: const [
             BottomNavigationBarItem(
@@ -82,7 +84,7 @@ class _HomePageState extends State<HomePage> {
             BottomNavigationBarItem(
                 icon: Icon(FontAwesomeIcons.heart, size:20),
                 label: 'Favoritos'),
-            
+
           ]
       ),
     );
