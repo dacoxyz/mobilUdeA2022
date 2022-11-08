@@ -176,15 +176,7 @@ class _NewSitePageState extends State<NewSitePage> {
               const SizedBox(
                 height: 16.0,
               ),
-              const Text(
-                "Genero(s) del libro",
-                style: TextStyle(fontSize: 20),
-              ),
-              const SizedBox(
-                height: 16.0,
-              ),
-
-              ElevatedButton(
+                  ElevatedButton(
                 onPressed: () {
                   _savesite();
                 },

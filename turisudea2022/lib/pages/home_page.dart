@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:turisudea2022/pages/search_site_page.dart';
 import 'login_page.dart';
 import 'mySitesPage.dart';
 
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
   void _loadPages() {
     pages = [];
     pages.add(MySitesPage());
-    //pages.add(SearchBookPage());
+    pages.add(SearchSitePage());
     //pages.add(FavoritesPage());
     //pages.add(BooksStorePage());
   }
@@ -77,7 +78,7 @@ class _HomePageState extends State<HomePage> {
           items: const [
             BottomNavigationBarItem(
                 icon: Icon(FontAwesomeIcons.airbnb, size:20),
-                label: 'Mis Viajes'),
+                label: 'Mis Sitios'),
             BottomNavigationBarItem(
                 icon: Icon(FontAwesomeIcons.searchengin, size:20),
                 label: 'Buscar'),
