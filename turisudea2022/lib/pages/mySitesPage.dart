@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:turisudea2022/pages/detail_site.dart';
 
+import '../models/Result.dart';
 import 'NewSitePage.dart';
 
 
@@ -32,10 +34,14 @@ class _MySitesPageState extends State<MySitesPage> {
                 itemCount: snapshot.data?.docs.length,
                 itemBuilder: (context, index) {
                   QueryDocumentSnapshot site = snapshot.data!.docs[index];
+                  //Items site1= listBooks[index];
                   return Card(
                       child: ListTile(
                         title: Text(site['name']),
                         subtitle: Text(site['description']),
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) =>DetailSearchSitePage(site)));
+                        },
                       ));
                 },
               );
