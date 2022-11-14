@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:turisudea2022/pages/detail_site.dart';
 
+import '../models/Result.dart';
 import 'NewSitePage.dart';
-//import 'package:mis_libros/pages/new_book_page.dart';
+
 
 class MySitesPage extends StatefulWidget {
   const MySitesPage({Key? key}) : super(key: key);
@@ -24,18 +26,22 @@ class _MySitesPageState extends State<MySitesPage> {
             stream: FirebaseFirestore.instance
                 .collection("users")
                 .doc(FirebaseAuth.instance.currentUser?.uid)
-                .collection("books")
+                .collection("sites")
                 .snapshots(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) return const Text('Loading');
               return ListView.builder(
                 itemCount: snapshot.data?.docs.length,
                 itemBuilder: (context, index) {
-                  QueryDocumentSnapshot book = snapshot.data!.docs[index];
+                  QueryDocumentSnapshot site = snapshot.data!.docs[index];
+                  //Items site1= listBooks[index];
                   return Card(
                       child: ListTile(
-                        title: Text(book['name']),
-                        subtitle: Text(book['author']),
+                        title: Text(site['name']),
+                        subtitle: Text(site['description']),
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) =>DetailSearchSitePage(site)));
+                        },
                       ));
                 },
               );
@@ -46,7 +52,7 @@ class _MySitesPageState extends State<MySitesPage> {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const NewSitePage()));
           },
-          tooltip: 'New Book',
+          tooltip: 'New Site',
           child: const Icon(Icons.add)),
     );
   }

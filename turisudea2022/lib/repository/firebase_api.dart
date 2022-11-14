@@ -59,7 +59,7 @@ class FirebaseApi {
       final result = FirebaseFirestore.instance
           .collection("users")
           .doc(uid)
-          .collection("books")
+          .collection("sites")
           .doc(site.id)
           .set(site.toJson());
       return site.id;
