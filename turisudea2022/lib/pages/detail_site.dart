@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../models/result.dart';
 
 class DetailSearchSitePage extends StatefulWidget {
@@ -143,6 +144,21 @@ class _DetailSearchSitePageState extends State<DetailSearchSitePage> {
                     style: const TextStyle(
                         fontSize: 17.0, fontStyle: FontStyle.italic),
                   ),
+                ),
+                RatingBar.builder(
+                  initialRating: widget.site['rating'],
+                  minRating: 1,
+                  direction: Axis.horizontal,
+                  allowHalfRating: true,
+                  itemCount: 5,
+                  itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  itemBuilder: (context, _) => const Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                  ),
+                  onRatingUpdate: (rating) {
+
+                  },
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
