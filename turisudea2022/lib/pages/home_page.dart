@@ -1,8 +1,8 @@
-//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:turisudea2022/pages/search_site_page.dart';
+import 'favorites_page.dart';
 import 'login_page.dart';
 import 'mySitesPage.dart';
 
@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
     pages = [];
     pages.add(MySitesPage());
     pages.add(SearchSitePage());
-    //pages.add(FavoritesPage());
+    pages.add(FavoritesPage());
     //pages.add(BooksStorePage());
   }
 
