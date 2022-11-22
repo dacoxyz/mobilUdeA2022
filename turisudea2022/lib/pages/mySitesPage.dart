@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:turisudea2022/pages/detail_site.dart';
 
-import '../models/Result.dart';
 import 'NewSitePage.dart';
+import 'detail_site_page.dart';
 
 
 class MySitesPage extends StatefulWidget {
@@ -41,6 +41,9 @@ class _MySitesPageState extends State<MySitesPage> {
                         subtitle: Text(site['description']),
                         onTap: (){
                           Navigator.push(context, MaterialPageRoute(builder: (context) =>DetailSearchSitePage(site)));
+                        },
+                        onLongPress: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) =>DetailSitePage(site)));
                         },
                       ));
                 },

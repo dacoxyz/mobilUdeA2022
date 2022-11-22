@@ -23,13 +23,15 @@ class LocalSiteAdapter extends TypeAdapter<LocalSite> {
       ..otrainfo = fields[3] as String?
       ..ciudad= fields[4] as String?
       ..rating = fields[5] as String?
-      ..urlPicture = fields[6] as String?;
+      ..latitud=fields[6] as String?
+      ..longitud=fields[7] as String?
+      ..urlPicture = fields[8] as String?;
   }
 
   @override
   void write(BinaryWriter writer, LocalSite obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -43,6 +45,10 @@ class LocalSiteAdapter extends TypeAdapter<LocalSite> {
       ..writeByte(5)
       ..write(obj.rating.toString())
       ..writeByte(6)
+      ..write(obj.latitud.toString())
+      ..writeByte(7)
+      ..write(obj.longitud.toString())
+      ..writeByte(8)
       ..write(obj.urlPicture);
   }
 

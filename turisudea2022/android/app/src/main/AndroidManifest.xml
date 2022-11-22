@@ -4,6 +4,8 @@
         android:label="turisudea2022"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyDvO40CzL-s6cTjTzPQONJz6yBTDF0vPIA"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

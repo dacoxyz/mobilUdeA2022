@@ -22,7 +22,13 @@ class LocalSite extends HiveObject {
   @HiveField(5)
   String? rating;
 
-  @HiveField(6)
+  @HiveField(6) //20221121
+  String? latitud; //20221121
+
+  @HiveField(7)//20221121
+  String? longitud; //20221121
+
+  @HiveField(8)  //20221121
   String? urlPicture; //imageLink
 
 }

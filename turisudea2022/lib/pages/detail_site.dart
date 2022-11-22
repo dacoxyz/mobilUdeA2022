@@ -42,7 +42,10 @@ class _DetailSearchSitePageState extends State<DetailSearchSitePage> {
       ..otrainfo = widget.site['otrainfo']
       ..ciudad= widget.site['ciudad']
       ..rating = widget.site['rating'].toString()
+      ..latitud=widget.site['latitud'].toString()
+      ..longitud=widget.site['longitud'].toString()
       ..urlPicture = widget.site['urlPicture'];
+
 
   /*
     ..name = widget.site.volumeInfo?.title
@@ -117,6 +120,7 @@ class _DetailSearchSitePageState extends State<DetailSearchSitePage> {
                     textAlign: TextAlign.justify,
                     style: const TextStyle(
                         fontSize: 17.0, fontStyle: FontStyle.italic),
+
                   ),
                 ),
                 Padding(
