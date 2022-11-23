@@ -9,7 +9,7 @@ class site {
   var _phone;
   var _urlPicture;
   var _latitud;
-  var _longitude;
+  var _longitud;
   var _address;
   var _rating;
 
@@ -32,7 +32,7 @@ class site {
     'phone' : _phone,
     'urlPicture' : _urlPicture,
     'latitud' : _latitud,
-    'longitud' : _longitude,
+    'longitud' : _longitud,
     'address' : _address,
     'rating': _rating,
   };
@@ -48,7 +48,7 @@ class site {
         _phone=json['phone'],
         _urlPicture=json['urlPicture'],
         _latitud=json['latitud'],
-        _longitude=json['longitude'],
+        _longitud=json['longitud'],
         _address=json['address'],
         _rating=json['rating'];
 
@@ -70,10 +70,10 @@ class site {
     _address = value;
   }
 
-  get longitude => _longitude;
+  get longitud => _longitud;
 
-  set longitude(value) {
-    _longitude = value;
+  set longitud(value) {
+    _longitud = value;
   }
 
   get latitud => _latitud;
@@ -126,5 +126,5 @@ class site {
 
   site(this._id, this._name,  this._description,  this._otrainfo,    this._ciudad,
       this._departamento,      this._temperature,      this._phone,  this._urlPicture,
-      this._latitud,      this._longitude,      this._address,this._rating);
+      this._latitud,      this._longitud,      this._address,this._rating);
 }

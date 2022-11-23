@@ -1,8 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:turisudea2022/models/local_site.dart';
 import 'package:turisudea2022/pages/splash_page.dart';
-//import 'package:hive/hive.dart';
+
 //import 'package:hive_flutter/hive_flutter.dart';
 
 import 'firebase_options.dart';
@@ -11,21 +14,14 @@ import 'firebase_options.dart';
   runApp(const MyApp());
 }*/
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
   );
-/*Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform
-  );
-*/
-  //await Hive.initFlutter();
-  //Hive.registerAdapter(LocalBookAdapter());
-
-  //await Hive.openBox<LocalBook>('favorites');
+  await Hive.initFlutter();
+  Hive.registerAdapter(LocalSiteAdapter());
+  await Hive.openBox<LocalSite>('favorites');
 
   runApp(const MyApp());
 }

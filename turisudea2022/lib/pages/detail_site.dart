@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import '../boxes.dart';
+import '../models/local_site.dart';
 import '../models/result.dart';
 
 class DetailSearchSitePage extends StatefulWidget {
@@ -22,44 +24,55 @@ class _DetailSearchSitePageState extends State<DetailSearchSitePage> {
   }
 
   void _getLocalSite() {
-  /*  final box = Boxes.getFavoritesBox();
+    final box = Boxes.getFavoritesBox();
     box.values.forEach((element) {
-      if (element.id == widget.book.id) {
+      if (element.id == widget.site.id) {
         isFavorite = true;
       }
     });
 
-   */
-  }
-/*
-  void _onFavoritesButtonClicked() async {
-    var localBook = LocalBook()
-      ..id = widget.book.id
-      ..name = widget.book.volumeInfo?.title
-      ..author = widget.book.volumeInfo?.authors?[0]
-      ..publishedDate = widget.book.volumeInfo?.publishedDate
-      ..description = widget.book.volumeInfo?.description
-      ..imageLink = widget.book.volumeInfo?.imageLinks?.smallThumbnail;
 
+  }
+
+  void _onFavoritesButtonClicked() async {
+    var localSite = LocalSite()
+      ..id = widget.site.id
+      ..name = widget.site['name']
+      ..description= widget.site['description']
+      ..otrainfo = widget.site['otrainfo']
+      ..ciudad= widget.site['ciudad']
+      ..rating = widget.site['rating'].toString()
+      ..latitud=widget.site['latitud'].toString()
+      ..longitud=widget.site['longitud'].toString()
+      ..urlPicture = widget.site['urlPicture'];
+
+
+  /*
+    ..name = widget.site.volumeInfo?.title
+    ..description = widget.site.volumeInfo?.description
+      ..author = widget.site.volumeInfo?.authors?[0]
+      ..publishedDate = widget.site.volumeInfo?.publishedDate
+      ..imageLink = widget.site.?.imageLinks?.smallThumbnail;
+ */
     final box = Boxes.getFavoritesBox();
-    //box.add(localBook);
+    box.add(localSite);
 
     if (isFavorite) {
-      box.delete(localBook.id);
+      box.delete(localSite.id);
     } else {
-      box.put(localBook.id, localBook);
+      box.put(localSite.id, localSite);
     }
 
     setState(() {
       isFavorite = !isFavorite;
     });
   }
-*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text( widget.site['name']),
+        title: Text(widget.site['name']),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -85,7 +98,7 @@ class _DetailSearchSitePageState extends State<DetailSearchSitePage> {
                             isFavorite ? Icons.favorite : Icons.favorite_border),
                         color: Colors.red,
                         onPressed: (() {
-                          //_onFavoritesButtonClicked();
+                          _onFavoritesButtonClicked();
                         }),
                       ),
                     ),
@@ -107,6 +120,7 @@ class _DetailSearchSitePageState extends State<DetailSearchSitePage> {
                     textAlign: TextAlign.justify,
                     style: const TextStyle(
                         fontSize: 17.0, fontStyle: FontStyle.italic),
+
                   ),
                 ),
                 Padding(
